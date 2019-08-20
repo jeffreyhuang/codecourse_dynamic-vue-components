@@ -4,6 +4,14 @@
       v-for="notification in notifications"
       :key="notification.id"
     >
+      <AppNotificationPostReplied
+        v-if="notification.type === 'post-replied'"
+        :notification="notification"
+      />
+      <AppNotificationPostUpvoted
+        v-if="notification.type === 'post-upvoted'"
+        :notification="notification"
+      />
     </AppNotification>
   </div>
 </template>
