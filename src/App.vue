@@ -4,18 +4,21 @@
       v-for="notification in notifications"
       :key="notification.id"
     >
-
     </AppNotification>
   </div>
 </template>
 
 <script>
 import AppNotification from '@/components/AppNotification'
+import AppNotificationPostReplied from '@/components/notifications/types/AppNotificationPostReplied'
+import AppNotificationPostUpvoted from '@/components/notifications/types/AppNotificationPostUpvoted'
 
 export default {
   name: 'app',
   components: {
-    AppNotification
+    AppNotification,
+    AppNotificationPostReplied,
+    AppNotificationPostUpvoted
   },
   data () {
     return {
