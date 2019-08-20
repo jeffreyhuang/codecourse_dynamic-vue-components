@@ -4,12 +4,8 @@
       v-for="notification in notifications"
       :key="notification.id"
     >
-      <AppNotificationPostReplied
-        v-if="notification.type === 'post-replied'"
-        :notification="notification"
-      />
-      <AppNotificationPostUpvoted
-        v-if="notification.type === 'post-upvoted'"
+      <component
+        :is="`${notification.type}`"
         :notification="notification"
       />
     </AppNotification>
@@ -25,8 +21,8 @@ export default {
   name: 'app',
   components: {
     AppNotification,
-    AppNotificationPostReplied,
-    AppNotificationPostUpvoted
+    'post-replied': AppNotificationPostReplied,
+    'post-upvoted': AppNotificationPostUpvoted
   },
   data () {
     return {
