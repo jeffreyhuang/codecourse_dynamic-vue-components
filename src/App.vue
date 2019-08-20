@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AppNotification
+      v-for="notification in notifications"
+      :key="notification.id"
+    >
+      <component
+        :is="`${notification.type}`"
+        :notification="notification"
+      />
+    </AppNotification>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppNotification from '@/components/AppNotification'
+import AppNotificationPostReplied from '@/components/notifications/types/AppNotificationPostReplied'
+import AppNotificationPostUpvoted from '@/components/notifications/types/AppNotificationPostUpvoted'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AppNotification,
+    'post-replied': AppNotificationPostReplied,
+    'post-upvoted': AppNotificationPostUpvoted
+  },
+  data () {
+    return {
+      notifications: []
+    }
+  },
+  mounted () {
+    this.notifications = [
+      {
+        id: 1,
+        type: 'post-replied',
+        user: {
+          name: 'Alex'
+        }
+      },
+      {
+        id: 2,
+        type: 'post-upvoted',
+        user: {
+          name: 'Billy'
+        }
+      }
+    ]
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
