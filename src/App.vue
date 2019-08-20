@@ -1,13 +1,21 @@
 <template>
   <div id="app">
+    <AppNotification
+      v-for="notification in notifications"
+      :key="notification.id"
+    >
+
+    </AppNotification>
   </div>
 </template>
 
 <script>
+import AppNotification from '@/components/AppNotification'
+
 export default {
   name: 'app',
   components: {
-
+    AppNotification
   },
   data () {
     return {
